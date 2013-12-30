@@ -1,0 +1,3 @@
+[submodule "dwm"]
+	path = dwm
+	url = gdarkc:dwm.git
