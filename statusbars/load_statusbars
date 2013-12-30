@@ -12,17 +12,17 @@ trap _shutdown INT TERM QUIT
 
 DEBUG=no
 
-BASEDIR="$HOME/wm/statusbars"
+BASEDIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 IMAGEDIR="$BASEDIR/images"
 SCRIPTDIR="$BASEDIR"
+
+echo "BASEDIR: $BASEDIR"
 
 wifi_img="$SCRIPTDIR/wifi"
 bat_img="$SCRIPTDIR/battery"
 bat_time="$SCRIPTDIR/battery-time"
 
-RUNNER=$SCRIPTDIR/dzcoord
 SOCKET=$BASEDIR/dzen.socket
-
 
 write() {
   echo "$@" | ncat -U $SOCKET
@@ -37,12 +37,17 @@ run() {
   fi
 }
 
+if ! hash dzcoord &> /dev/null; then
+  echo "dzcoord not available, aborting..." >&2
+  exit 1
+fi
+
 # Start the bar program
 rm -f $SOCKET
 if [[ "$DEBUG" == "yes" ]]; then
-  ncat -Ulk $SOCKET | tee $BASEDIR/input.log | $RUNNER 2> $BASEDIR/bar.log &
+  ncat -Ulk $SOCKET | tee $BASEDIR/input.log | dzcoord 2> $BASEDIR/bar.log &
 else
-  ncat -Ulk $SOCKET | $RUNNER 2> $BASEDIR/bar.log &
+  ncat -Ulk $SOCKET | dzcoord 2> $BASEDIR/bar.log &
 fi
 
 sleep 0.1

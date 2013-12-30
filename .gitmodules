@@ -1,3 +1,6 @@
 [submodule "dwm"]
 	path = dwm
 	url = gdarkc:dwm.git
+[submodule "dzcoord"]
+	path = dzcoord
+	url = gdarkc:dzcoord

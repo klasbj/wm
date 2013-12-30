@@ -1,6 +1,8 @@
 #!/bin/bash
 
-BASEDIR="$HOME/wm"
+BASEDIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+
+export PATH="$BASEDIR/dzcoord/bin:$PATH"
 
 echo "Loading statusbars" > $HOME/.log.load_statusbars
 $BASEDIR/statusbars/load_statusbars &>> $HOME/.log.load_statusbars &
