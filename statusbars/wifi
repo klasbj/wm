@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+
+link=`iwconfig wlan0 | grep -oe 'ty=[0-9]\+' | sed -e 's/ty=//' `
+
+if [[ "$link" -lt "10" ]]; then
+	echo -n "net-0.xpm";
+elif [[ "$link" -lt "33" ]]; then
+	echo -n "net-1.xpm";
+elif [[ "$link" -lt "55" ]]; then
+	echo -n "net-2.xpm";
+else
+	echo -n "net-3.xpm";
+fi

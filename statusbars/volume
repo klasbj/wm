@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Check the volume and return the correct image
+#
+
+if (amixer sget Master | grep -qF [off])
+then
+	echo -n snd-m.xpm
+else
+	p=$(amixer sget Master | grep -oe '[0-9]\+%' | head -1 )
+	p=${p%\%}
+	if [ "$p" -lt "15" ]; then 
+		echo -n snd-0.xpm
+	elif [ "$p" -lt "50" ]; then 
+		echo -n snd-1.xpm
+	elif [ "$p" -lt "85" ]; then 
+		echo -n snd-2.xpm
+	else
+		echo -n snd-3.xpm
+	fi
+fi

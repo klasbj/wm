@@ -1,0 +1,48 @@
+#!/bin/bash
+
+. $HOME/.statusbars/globals
+
+echo -n "#"
+
+NETWORK=$(netctl list | sed -n 's/^\* //p')
+if [[ -z "$NETWORK" ]]; then
+  NETWORK="$(wpa_cli -i wlan0 status | sed -n 's/^id_str=//p')"
+fi
+DOWNARROW="^i($IMAGEDIR/downarrow.xpm,7)"
+UPARROW="^i($IMAGEDIR/uparrow.xpm,7)"
+
+if [ -f "/etc/netctl/$NETWORK" ]
+then
+    CONNTYPE=$(< "/etc/netctl/$NETWORK" grep -iE "^CONNECTION" \
+        | sed -e "s/.*=['\"]\?\([^'\"]\+\)['\"]\?/\1/")
+    INTERFACE=$(< "/etc/netctl/$NETWORK" grep -iE "^INTERFACE" \
+        | sed -e "s/.*=['\"]\?\([^'\"]\+\)['\"]\?/\1/")
+
+    case "$CONNTYPE" in
+        wireless)
+            echo -n "\
+$DOWNARROW#\${downspeed $INTERFACE} kB/s|\
+$UPARROW#\${upspeed $INTERFACE} kB/s|\
+$NETWORK|\
+\${addrs $INTERFACE}|\
+^i($IMAGEDIR/$(exec $wifi_img),10) \${wireless_link_qual_perc $INTERFACE}%|\
+\${wireless_essid wlan0}\
+"
+            ;;
+        ethernet)
+            echo -n "\
+$DOWNARROW#\${downspeed $INTERFACE} kB/s|\
+$UPARROW#\${upspeed $INTERFACE} kB/s|\
+$NETWORK|\
+\${addrs $INTERFACE}|\
+"
+            ;;
+        *)
+            echo -n "CONNTYPE: $CONNTYPE|INTERFACE: $INTERFACE"
+            ;;
+    esac
+fi
+
+echo
+
+exit 0
