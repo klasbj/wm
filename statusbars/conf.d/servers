@@ -1,0 +1,11 @@
+# Run commands
+Exec=(python2 $SCRIPTDIR/servers.py)
+Type=Periodical
+Period=60s
+
+# Area
+Area=servers
+Screen=0
+Bar=BOTTOM
+Weight=90
+Float=RIGHT

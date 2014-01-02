@@ -1,0 +1,10 @@
+# Run commands
+NETTXT="\${execp $SCRIPTDIR/network '$IMAGEDIR' '$SCRIPTDIR/wifi'}"
+
+Exec=(conky -u 1 -t "text net $NETTXT")
+Type=Continuous
+Area=net
+Screen=0
+Bar=BOTTOM
+Weight=100
+Float=LEFT

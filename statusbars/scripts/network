@@ -1,6 +1,7 @@
 #!/bin/bash
 
-. $HOME/.statusbars/globals
+IMAGEDIR="$1"
+wifi_img="$2"
 
 echo -n "#"
 
