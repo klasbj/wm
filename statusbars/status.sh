@@ -10,7 +10,7 @@ function _shutdown() {
 
 trap _shutdown INT TERM QUIT
 
-DEBUG=yes
+DEBUG=no
 NO_DZCOORD=no
 
 BASEDIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
