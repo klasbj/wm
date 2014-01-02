@@ -2,7 +2,6 @@
 
 BASEDIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
-export PATH="$BASEDIR/dzcoord/bin:$PATH"
 export SESSIONDIR="$BASEDIR/session"
 
 if [[ -e "$SESSIONDIR" ]]; then
@@ -11,7 +10,12 @@ if [[ -e "$SESSIONDIR" ]]; then
 fi
 mkdir "$SESSIONDIR"
 
+OLDPATH="$PATH"
+export PATH="$BASEDIR/dzcoord/bin:$PATH"
+
 $BASEDIR/statusbars/status.sh &> $SESSIONDIR/status.log &
+
+export PATH="$OLDPATH"
 
 # allow the socket to open
 sleep 0.3
