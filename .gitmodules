@@ -7,3 +7,6 @@
 [submodule "dmenu"]
 	path = dmenu
 	url = gdarkc:dmenu.git
+[submodule "dzen"]
+	path = dzen
+	url = gdarkc:dzen.git
