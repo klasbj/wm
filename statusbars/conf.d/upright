@@ -2,10 +2,10 @@
 bat_img="$SCRIPTDIR/battery"
 bat_time="$SCRIPTDIR/battery-time"
 UPRIGHT="text info \
-^i($IMAGEDIR/cpu.xpm,12)#\$cpu% \$freq_g GHz|\
-^i($IMAGEDIR/ram.xpm,12)#\$memperc%|\${exec $bat_img}#\${battery_percent BAT1}% \
+^i($IMAGEDIR/cpu.xpm,12)\\\\#\$cpu% \$freq_g GHz|\
+^i($IMAGEDIR/ram.xpm,12)\\\\#\$memperc%|\${exec $bat_img}\\\\#\${battery_percent BAT1}% \
 \${exec $bat_time}^norm()|\
-\${time %a %Y-%m-%d %H:%M:%S}#"
+\${time %a %Y-%m-%d %H:%M:%S}\\\\#"
 
 Exec=(conky -u 1 -t "$UPRIGHT")
 Type=Continuous

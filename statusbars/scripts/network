@@ -3,7 +3,7 @@
 IMAGEDIR="$1"
 wifi_img="$2"
 
-echo -n "#"
+echo -n "\\#"
 
 NETWORK=$(netctl list | sed -n 's/^\* //p')
 if [[ -z "$NETWORK" ]]; then
@@ -22,18 +22,19 @@ then
     case "$CONNTYPE" in
         wireless)
             echo -n "\
-$DOWNARROW#\${downspeed $INTERFACE} kB/s|\
-$UPARROW#\${upspeed $INTERFACE} kB/s|\
+$DOWNARROW\\#\${downspeedf $INTERFACE} kB/s|\
+$UPARROW\\#\${upspeedf $INTERFACE} kB/s|\
 $NETWORK|\
 \${addrs $INTERFACE}|\
-^i($IMAGEDIR/$(exec $wifi_img),10) \${wireless_link_qual_perc $INTERFACE}%|\
+^i($IMAGEDIR/$(exec $wifi_img),10) \
+\${wireless_link_qual_perc $INTERFACE}%|\
 \${wireless_essid wlan0}\
-"
+" | tee ~/xxxx
             ;;
         ethernet)
             echo -n "\
-$DOWNARROW#\${downspeed $INTERFACE} kB/s|\
-$UPARROW#\${upspeed $INTERFACE} kB/s|\
+$DOWNARROW\\#\${downspeed $INTERFACE} kB/s|\
+$UPARROW\\#\${upspeed $INTERFACE} kB/s|\
 $NETWORK|\
 \${addrs $INTERFACE}|\
 "
