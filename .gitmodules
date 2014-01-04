@@ -4,3 +4,6 @@
 [submodule "dzcoord"]
 	path = dzcoord
 	url = gdarkc:dzcoord
+[submodule "dmenu"]
+	path = dmenu
+	url = gdarkc:dmenu.git
