@@ -29,7 +29,7 @@ $NETWORK|\
 ^i($IMAGEDIR/$(exec $wifi_img),10) \
 \${wireless_link_qual_perc $INTERFACE}%|\
 \${wireless_essid wlan0}\
-" | tee ~/xxxx
+"
             ;;
         ethernet)
             echo -n "\

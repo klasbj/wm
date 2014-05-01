@@ -1,0 +1,73 @@
+This is my personal WM start scripts, which deals with starting dwm,
+statusbars, and scripts to populate the status bars with data. Some things are
+probably not that useful to anyone else, but most of it might be!
+
+pkgbuilds/
+  Contains PKGBUILD files for the dependencies which use my own forks.
+
+dmenu/
+dwm/
+dzen/
+  My forks of the projects, with various fixes that depend on each other.
+
+dzcoord/
+  My dzcoord project (https://github.com/klasbj/dzcoord)
+
+statusbars/
+  My statusbar management scripts. statusbars/conf.d/ contains the scripts
+  which generate data for the statusbars. The files are source in a bash
+  function, and can thus use regular bash syntax. The file should set some
+  variables which are used to start the data generation.
+    Exec      - Bash array containing the command to run
+    Type      - Continuous (process runs continuously) or
+                Periodical (should be started periodically)
+    Period    - The period of the Periodical command. Any format which bash's
+                sleep accepts will work.
+    Area      - The name of the commands area.
+    Screen    - Which screen to display it on.
+    Bar       - BOTTOM or TOP.
+    Weight    - Weight for floating position.
+    Float     - Float direction: LEFT, RIGHT or CENTER.
+  The scripts which are in the conf.d and scripts directory are likely using
+  bits which are specific to my machine, so some things will likely have to be
+  modified to work properly on another machine. E.g. network interface name.
+
+Build and Use
+-----
+Run
+
+make
+
+to build dwm and dzcoord.
+
+Then call
+
+exec [path-to-here]/init.sh
+
+in your .xinitrc file to start everything.
+
+
+Dependencies
+------------
+
+* dmenu and dzen2 via the included PKGBUILDs.
+
+The statusbar scripts use:
+* conky with a .conkyrc which sets:
+      out_to_console yes
+      out_to_stderr no
+      out_to_x no
+* acpitool
+* acpi
+* netctl
+* wireless_tools
+* wpa_supplicant
+* alsa-utils
+* inotify-tools
+
+Optional:
+* compton - for compositing, expects a compton.conf in
+            $XDG_CONFIG_HOME/compton/compton.conf (defaults to ~/.config/...
+            in case $XDG_CONFIG_HOME is not set.)
+            I recommend using compton-git from the AUR:
+            https://aur.archlinux.org/packages/compton-git/
