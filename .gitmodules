@@ -6,7 +6,7 @@
 	url = gdarkc:dzcoord
 [submodule "dmenu"]
 	path = dmenu
-	url = gdarkc:dmenu.git
+	url = https://github.com/klasbj/dmenu.git
 [submodule "dzen"]
 	path = dzen
-	url = gdarkc:dzen.git
+	url = https://github.com/klasbj/dzen.git

@@ -14,7 +14,7 @@ depends=('libxpm' 'libxinerama' 'libxft' 'libxss')
 makedepends=('git' 'gcc' 'pkg-config' 'db')
 provides=('dzen2')
 conflicts=('dzen2' 'dzen2-gadgets-svn' 'dzen2-git')
-source=("git+ssh://git@darkc.no-ip.org/dzen.git")
+source=("git://github.com/klasbj/dzen.git")
 sha256sums=(SKIP)
 
 build() {
