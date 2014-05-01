@@ -34,6 +34,9 @@ statusbars/
 
 Build and Use
 -----
+
+Build and install the dependencies in pkgbuilds/ with makepkg.
+
 Run
 
 make
