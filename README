@@ -51,6 +51,7 @@ Dependencies
 ------------
 
 * dmenu and dzen2 via the included PKGBUILDs.
+* terminus-font
 
 The statusbar scripts use:
 * conky with a .conkyrc which sets:
@@ -71,3 +72,5 @@ Optional:
             in case $XDG_CONFIG_HOME is not set.)
             I recommend using compton-git from the AUR:
             https://aur.archlinux.org/packages/compton-git/
+
+* ...and likely more stuff I have forgotten!
