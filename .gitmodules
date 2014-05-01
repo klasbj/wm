@@ -1,9 +1,9 @@
 [submodule "dwm"]
 	path = dwm
-  url = https://github.com/klasbj/dwm.git
+	url = https://github.com/klasbj/dwm.git
 [submodule "dzcoord"]
 	path = dzcoord
-  url = https://github.com/klasbj/dzcoord.git
+	url = https://github.com/klasbj/dzcoord.git
 [submodule "dmenu"]
 	path = dmenu
 	url = https://github.com/klasbj/dmenu.git
