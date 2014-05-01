@@ -3,7 +3,7 @@
 	url = gdarkc:dwm.git
 [submodule "dzcoord"]
 	path = dzcoord
-	url = gdarkc:dzcoord
+  url = https://github.com/klasbj/dzcoord.git
 [submodule "dmenu"]
 	path = dmenu
 	url = https://github.com/klasbj/dmenu.git
