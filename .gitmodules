@@ -1,12 +1,16 @@
 [submodule "dwm"]
 	path = dwm
 	url = https://github.com/klasbj/dwm.git
+	branch = master
 [submodule "dzcoord"]
 	path = dzcoord
 	url = https://github.com/klasbj/dzcoord.git
+	branch = master
 [submodule "dmenu"]
 	path = dmenu
 	url = https://github.com/klasbj/dmenu.git
+	branch = bigger-patch
 [submodule "dzen"]
 	path = dzen
 	url = https://github.com/klasbj/dzen.git
+	branch = master
