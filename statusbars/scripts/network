@@ -2,12 +2,13 @@
 
 IMAGEDIR="$1"
 wifi_img="$2"
+interface="$3"
 
 echo -n "\\#"
 
 NETWORK=$(netctl list | sed -n 's/^\* //p')
 if [[ -z "$NETWORK" ]]; then
-  NETWORK="$(wpa_cli -i wlan0 status | sed -n 's/^id_str=//p')"
+  NETWORK="$(wpa_cli -i "$interface" status | sed -n 's/^id_str=//p')"
 fi
 DOWNARROW="^i($IMAGEDIR/downarrow.xpm,7)"
 UPARROW="^i($IMAGEDIR/uparrow.xpm,7)"
@@ -26,9 +27,9 @@ $DOWNARROW\\#\${downspeedf $INTERFACE} kB/s|\
 $UPARROW\\#\${upspeedf $INTERFACE} kB/s|\
 $NETWORK|\
 \${addrs $INTERFACE}|\
-^i($IMAGEDIR/$(exec $wifi_img),10) \
+^i($IMAGEDIR/$(exec $wifi_img $INTERFACE),10) \
 \${wireless_link_qual_perc $INTERFACE}%|\
-\${wireless_essid wlan0}\
+\${wireless_essid $INTERFACE}\
 "
             ;;
         ethernet)

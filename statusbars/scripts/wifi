@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-link=`iwconfig wlan0 | grep -oe 'ty=[0-9]\+' | sed -e 's/ty=//' `
+link=`iwconfig "$1" | grep -oe 'ty=[0-9]\+' | sed -e 's/ty=//' `
 
 if [[ "$link" -lt "10" ]]; then
 	echo -n "net-0.xpm";

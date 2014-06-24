@@ -1,5 +1,5 @@
 # Run commands
-NETTXT="\${execp $SCRIPTDIR/network '$IMAGEDIR' '$SCRIPTDIR/wifi'}"
+NETTXT="\${execp $SCRIPTDIR/network '$IMAGEDIR' '$SCRIPTDIR/wifi' 'wlp3s0'}"
 
 Exec=(conky -u 1 -t "text net $NETTXT")
 Type=Continuous

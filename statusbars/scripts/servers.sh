@@ -6,7 +6,7 @@ ARCHWAYUP="no"
 
 NETWORK=$(netctl list | sed -n 's/^\* //p')
 if [[ -z "$NETWORK" ]]; then
-  NETWORK="$(wpa_cli -i wlan0 status | sed -n 's/^id_str=//p')"
+  NETWORK="$(wpa_cli -i wlp3s0 status | sed -n 's/^id_str=//p')"
 fi
 
 if [[ "$NETWORK" == "dcnet2" ]] || \

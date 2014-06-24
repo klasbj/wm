@@ -1,25 +1,25 @@
 #!/bin/bash
 #
 
-IMAGEDIR="$HOME/.statusbars/images"
+IMAGEDIR="$HOME/wm/statusbars/images"
 
-ac=`cat /sys/class/power_supply/ADP1/online` 
+ac=`cat /sys/class/power_supply/AC0/online`
 
-if [ "$ac" -eq "1" ]; then 
-	echo -n "^i($IMAGEDIR/ac.xpm,12)" ; 
-else 
-	p=`acpitool -b | grep -oe "[0-9]\+\."` ; 
-	p=${p%.} ; 
-	if [ $p -lt 3 ] ; then 
-		echo -n "^fg(red)^i($IMAGEDIR/bat-0.xpm,12)" ; 
-	elif [ $p -lt 5 ] ; then 
-		echo -n "^norm()^i($IMAGEDIR/bat-0.xpm,12)" ; 
-	elif [ $p -lt 20 ] ; then 
-		echo -n "^norm()^i($IMAGEDIR/bat-1.xpm,12)" ; 
-	elif [ $p -lt 40 ] ; then 
-		echo -n "^norm()^i($IMAGEDIR/bat-2.xpm,12)" ; 
-	else 
-		echo -n "^norm()^i($IMAGEDIR/bat-3.xpm,12)" ; 
+if [ "$ac" -eq "1" ]; then
+	echo -n "^i($IMAGEDIR/ac.xpm,12)" ;
+else
+	p=`acpi -b | grep -oe "[0-9]\+%"` ;
+	p=${p%\%} ;
+	if [ $p -lt 3 ] ; then
+		echo -n "^fg(red)^i($IMAGEDIR/bat-0.xpm,12)" ;
+	elif [ $p -lt 5 ] ; then
+		echo -n "^norm()^i($IMAGEDIR/bat-0.xpm,12)" ;
+	elif [ $p -lt 20 ] ; then
+		echo -n "^norm()^i($IMAGEDIR/bat-1.xpm,12)" ;
+	elif [ $p -lt 40 ] ; then
+		echo -n "^norm()^i($IMAGEDIR/bat-2.xpm,12)" ;
+	else
+		echo -n "^norm()^i($IMAGEDIR/bat-3.xpm,12)" ;
 	fi
 fi
 
