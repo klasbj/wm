@@ -15,8 +15,8 @@ def get_data():
         return None
 
 TEXT_COL = {
-        False : u'^low()',
-        True  : u'^norm()'
+        False : u'^low()^ca(1, curl http://archway:5433/wake/{puter}){puter}^ca()',
+        True  : u'^norm()^ca(1, xterm -title {puter} -e ssh {puter}){puter}^ca()'
         }
 
 def print_data(d):
@@ -25,7 +25,7 @@ def print_data(d):
             x + [(y[0],y[1]['running'])] +
             ([(z['vm'],z['running']) for z in y[1]['vms'] ] if 'vms' in y[1] else []),
         d.iteritems(), [])
-    return u'#'.join(map(lambda x: TEXT_COL[x[1]] + x[0], ms))
+    return u'#'.join(map(lambda x: TEXT_COL[x[1]].format(puter=x[0]), ms))
 
 if __name__ == '__main__':
     d = get_data()
