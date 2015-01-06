@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Check the volume and return the correct image
+#
+
+touch "${SESSIONDIR}/keymapupdate"
+
+true
+while [ $? -ne 1 -a $? -ge 0 ]
+do
+  echo "text keymap $(setxkbmap -query | awk '/layout:/ { print $2 }')"
+  inotifywait -t 30 "${SESSIONDIR}/keymapupdate"
+done

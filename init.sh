@@ -10,12 +10,12 @@ if [[ -e "$SESSIONDIR" ]]; then
 fi
 mkdir "$SESSIONDIR"
 
-OLDPATH="$PATH"
-export PATH="$BASEDIR/dzcoord/bin:$PATH"
+#OLDPATH="$PATH"
+export PATH="$BASEDIR/bin:$BASEDIR/dzcoord/bin:$PATH"
 
 $BASEDIR/statusbars/status.sh &> $SESSIONDIR/status.log &
 
-export PATH="$OLDPATH"
+#export PATH="$OLDPATH"
 
 # Start compton
 if hash compton &> /dev/null; then

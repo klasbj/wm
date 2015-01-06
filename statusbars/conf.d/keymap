@@ -1,0 +1,8 @@
+# Run commands
+Exec=($SCRIPTDIR/keymap)
+Type=Continuous
+Area=keymap
+Screen=0
+Bar=BOTTOM
+Weight=95
+Float=RIGHT

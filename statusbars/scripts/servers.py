@@ -1,6 +1,7 @@
 import requests
 
 URL = 'http://darkc.no-ip.org/puters'
+#URL = 'http://darkc.dmz.se/puters'
 
 def get_data():
     j = {}
@@ -23,7 +24,7 @@ def print_data(d):
     ms = reduce(
         lambda x,y:
             x + [(y[0],y[1]['running'])] +
-            ([(z['vm'],z['running']) for z in y[1]['vms'] ] if 'vms' in y[1] else []),
+            ([(z['vm'],z['running']) for z in y[1]['vms'] ] if 'vms' in y[1] and y[0] not in ('twoducks',) else []),
         d.iteritems(), [])
     return u'#'.join(map(lambda x: TEXT_COL[x[1]].format(puter=x[0]), ms))
 
