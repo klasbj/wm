@@ -2,18 +2,19 @@
 bat_img="$SCRIPTDIR/battery"
 bat_time="$SCRIPTDIR/battery-time"
 clockcol="$SCRIPTDIR/clock.py"
-UPRIGHT="text info \
-^i($IMAGEDIR/cpu.xpm,12)\\\\#\$cpu% \$freq_g GHz|\
-^i($IMAGEDIR/ram.xpm,12)\\\\#\$memperc%|\${exec $bat_img}\\\\#\${battery_percent BAT0}% \
-\${exec $bat_time}^norm()|\
-\${exec $clockcol}\${time %a %Y-%m-%d %H:%M:%S}\\\\#"
+#^i($IMAGEDIR/ram.xpm,12)\\\\#\$memperc%
+UPRIGHT="text info1 \
+^i($IMAGEDIR/cpu.xpm,12)\\\\#\$cpu%\\\\#\$freq_g\\\\#GHz
+
+text info2 \${exec $bat_img}\\\\#\${battery_percent BAT0}%\\\\#\
+\${exec $bat_time}"
 
 Exec=(conky -u 1 -t "$UPRIGHT")
 Type=Continuous
 
 # Area
-Area=info
+Area=(info1 info2)
 Screen=0
 Bar=TOP
 Weight=1000
-Float=RIGHT
+Float=RIGHT_HL

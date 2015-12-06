@@ -7,11 +7,10 @@ pkgbuilds/
 
 dmenu/
 dwm/
-dzen/
   My forks of the projects, with various fixes that depend on each other.
 
-dzcoord/
-  My dzcoord project (https://github.com/klasbj/dzcoord)
+pysb/
+  My pysb project (https://github.com/klasbj/pysb)
 
 statusbars/
   My statusbar management scripts. statusbars/conf.d/ contains the scripts
@@ -27,13 +26,14 @@ statusbars/
     Screen    - Which screen to display it on.
     Bar       - BOTTOM or TOP.
     Weight    - Weight for floating position.
-    Float     - Float direction: LEFT, RIGHT or CENTER.
+    Float     - Float direction: LEFT, LEFT_HL, RIGHT, RIGHT_HL, CENTER_L
+                or CENTER_R.
   The scripts which are in the conf.d and scripts directory are likely using
   bits which are specific to my machine, so some things will likely have to be
   modified to work properly on another machine. E.g. network interface name.
 
 Build and Use
------
+-------------
 
 Build and install the dependencies in pkgbuilds/ with makepkg.
 
@@ -41,7 +41,7 @@ Run
 
 make
 
-to build dwm and dzcoord.
+to build dwm.
 
 Then call
 
@@ -53,7 +53,7 @@ in your .xinitrc file to start everything.
 Dependencies
 ------------
 
-* dmenu and dzen2 via the included PKGBUILDs.
+* dmenu via the included PKGBUILDs.
 * terminus-font
 
 The statusbar scripts use:
@@ -64,8 +64,8 @@ The statusbar scripts use:
 * acpitool
 * acpi
 * netctl
-* wireless_tools
-* wpa_supplicant
+* wireless\_tools
+* wpa\_supplicant
 * alsa-utils
 * inotify-tools
 

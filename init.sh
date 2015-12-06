@@ -11,7 +11,7 @@ fi
 mkdir "$SESSIONDIR"
 
 #OLDPATH="$PATH"
-export PATH="$BASEDIR/bin:$BASEDIR/dzcoord/bin:$PATH"
+export PATH="$BASEDIR/bin:$BASEDIR/pysb:$PATH"
 
 $BASEDIR/statusbars/status.sh &> $SESSIONDIR/status.log &
 
@@ -25,10 +25,14 @@ fi
 # allow the socket to open
 sleep 0.3
 
-[[ -z "$DWMSOCKET" ]] && DWMSOCKET=$SESSIONDIR/dzen.socket
+[[ -z "$BARSOCKET" ]] && BARSOCKET=$SESSIONDIR/dzen.socket
 [[ -z "$DWMBIN" ]] && DWMBIN=$BASEDIR/dwm/dwm
 
-echo "add_area dwm0 0 TOP 1000 CENTER
-add_area dwm1 1 TOP 1000 CENTER" | ncat -U "$DWMSOCKET"
+#echo "add_area dwmws0 0 TOP 1000 CENTER
+#add_area dwm1 1 TOP 1000 CENTER" | ncat -U "$BARSOCKET"
+echo "add_area dwmws0 0 TOP 1000 LEFT dwm-ws
+add_area dwmlt0 0 TOP 1000 LEFT_HL dwm-lt
+add_area dwmtitle0 0 TOP 1000 CENTER_L
+add_area clock 0 TOP 10000 RIGHT clock" | ncat -U "$BARSOCKET"
 
-exec $DWMBIN 2> $SESSIONDIR/dwm.log | ncat -U "$DWMSOCKET"
+exec $DWMBIN 2> $SESSIONDIR/dwm.log | ncat -U "$BARSOCKET"

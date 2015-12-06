@@ -8,4 +8,4 @@ Area=servers
 Screen=0
 Bar=BOTTOM
 Weight=90
-Float=RIGHT
+Float=RIGHT_HL

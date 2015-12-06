@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+
+setxkbmap "$1" 2> /dev/null || exit $?
+
+[[ -n "$SESSIONDIR" ]] && \
+  [[ -d "$SESSIONDIR" ]] && \
+  touch "${SESSIONDIR}/keymapupdate"
+
+[[ -f ~/.xmodmaprc ]] && xmodmap ~/.xmodmaprc

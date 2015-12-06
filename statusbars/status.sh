@@ -10,8 +10,7 @@ function _shutdown() {
 
 trap _shutdown INT TERM QUIT
 
-DEBUG=no
-NO_DZCOORD=no
+[[ -z "$DEBUG_STATUSBAR" ]] && DEBUG_STATUSBAR=no
 
 BASEDIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 IMAGEDIR="$BASEDIR/images"
@@ -61,11 +60,14 @@ start() {
   source $1
   local processname=$(basename ${1})
   local dlog=$SESSIONDIR/${processname}.log
-  if [[ "$DEBUG" != "yes" ]]; then
+  if [[ "$DEBUG_STATUSBAR" != "yes" ]]; then
     unset dlog
   fi
-
-  write "${dlog}" "add_area ${Area} ${Screen} ${Bar} ${Weight} ${Float}"
+  add=0
+  for area in "${Area[@]}"; do
+    write "${dlog}" "add_area ${area} ${Screen} ${Bar} $((Weight+add)) ${Float}"
+    add=$((add+1))
+  done
 
   case ${Type} in
     Periodical)
@@ -94,26 +96,15 @@ stop() {
 # Start the bar program
 rm -f "$SOCKET"
 debuglogfile="$SESSIONDIR/input.log"
-if [[ "$DEBUG" != "yes" ]]; then
+if [[ "$DEBUG_STATUSBAR" != "yes" ]]; then
   unset debuglogfile
 fi
 
-dz() {
-  if [[ "$NO_DZCOORD" == yes ]]; then
-    echo "No dzen"
-    cat
-  else
-    echo "Starting real dzen"
-    # check that dzcoord is installed
-    if ! hash dzcoord &> /dev/null; then
-      echo "dzcoord not available, aborting..." >&2
-      exit 1
-    fi
-    dzcoord &> $SESSIONDIR/bar.log
-  fi
+bar() {
+  pysb.py &> $SESSIONDIR/bar.log
 }
-#ncat -Ulk "$SOCKET" > >(debug ${debuglogfile} | dzcoord 2> $SESSIONDIR/bar.log) &
-ncat -Ulk "$SOCKET" > >(debug ${debuglogfile} | dz) &
+
+ncat -Ulk "$SOCKET" > >(debug ${debuglogfile} | bar) &
 COORDPID=$!
 sleep 0.1
 
@@ -125,8 +116,6 @@ for f in "$BASEDIR/conf.d/"*; do
 done
 
 wait
-
-echo "men...???"
 
 for f in "${STARTED[@]}"; do
   stop "$f"

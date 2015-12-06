@@ -4,8 +4,6 @@ IMAGEDIR="$1"
 wifi_img="$2"
 interface="$3"
 
-echo -n "\\#"
-
 NETWORK=$(netctl list | sed -n 's/^\* //p')
 if [[ -z "$NETWORK" ]]; then
   NETWORK="$(wpa_cli -i "$interface" status | sed -n 's/^id_str=//p')"
@@ -22,26 +20,29 @@ then
 
     case "$CONNTYPE" in
         wireless)
-            echo -n "\
-$DOWNARROW\\#\${downspeedf $INTERFACE} kB/s|\
-$UPARROW\\#\${upspeedf $INTERFACE} kB/s|\
+            echo "text net1 \
+$DOWNARROW\\#\${downspeedf $INTERFACE}\\#kB/s|\
+$UPARROW\\#\${upspeedf $INTERFACE}\\#kB/s
+text net2 \
 $NETWORK|\
-\${addrs $INTERFACE}|\
-^i($IMAGEDIR/$(exec $wifi_img $INTERFACE),10) \
+\${addrs $INTERFACE}
+text net3 \
+^i($IMAGEDIR/$(exec $wifi_img $INTERFACE),10)\\#\
 \${wireless_link_qual_perc $INTERFACE}%|\
 \${wireless_essid $INTERFACE}\
 "
             ;;
         ethernet)
-            echo -n "\
+            echo "text net1 \
 $DOWNARROW\\#\${downspeed $INTERFACE} kB/s|\
-$UPARROW\\#\${upspeed $INTERFACE} kB/s|\
+$UPARROW\\#\${upspeed $INTERFACE} kB/s
+text net2 \
 $NETWORK|\
-\${addrs $INTERFACE}|\
+\${addrs $INTERFACE}\
 "
             ;;
         *)
-            echo -n "CONNTYPE: $CONNTYPE|INTERFACE: $INTERFACE"
+            echo "CONNTYPE: $CONNTYPE|INTERFACE: $INTERFACE"
             ;;
     esac
 fi

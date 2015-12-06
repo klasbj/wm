@@ -1,0 +1,8 @@
+# Run commands
+Exec=(true)
+Type=Continuous
+Area=net1
+Screen=0
+Bar=BOTTOM
+Weight=100
+Float=LEFT

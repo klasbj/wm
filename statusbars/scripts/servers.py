@@ -21,6 +21,8 @@ TEXT_COL = {
         }
 
 def print_data(d):
+    if d is None:
+        return ''
     ms = reduce(
         lambda x,y:
             x + [(y[0],y[1]['running'])] +

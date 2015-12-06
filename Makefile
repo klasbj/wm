@@ -1,5 +1,5 @@
 
-COMPONENTS := dwm dzcoord
+COMPONENTS := dwm
 
 .PHONY: all
 all: $(COMPONENTS)
