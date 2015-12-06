@@ -2,6 +2,7 @@ This is my personal WM start scripts, which deals with starting dwm,
 statusbars, and scripts to populate the status bars with data. Some things are
 probably not that useful to anyone else, but most of it might be!
 
+```
 pkgbuilds/
   Contains PKGBUILD files for the dependencies which use my own forks.
 
@@ -31,23 +32,16 @@ statusbars/
   The scripts which are in the conf.d and scripts directory are likely using
   bits which are specific to my machine, so some things will likely have to be
   modified to work properly on another machine. E.g. network interface name.
+```
 
 Build and Use
 -------------
 
 Build and install the dependencies in pkgbuilds/ with makepkg.
 
-Run
+Run `make` to build dwm.
 
-make
-
-to build dwm.
-
-Then call
-
-exec [path-to-here]/init.sh
-
-in your .xinitrc file to start everything.
+Then call `exec [path-to-here]/init.sh` in your `.xinitrc` file to start everything.
 
 
 Dependencies
@@ -55,6 +49,7 @@ Dependencies
 
 * dmenu via the included PKGBUILDs.
 * terminus-font
+* python-pyqt5 for pysb
 
 The statusbar scripts use:
 * conky with a .conkyrc which sets:
