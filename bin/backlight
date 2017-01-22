@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+my $cur = `xbacklight -get`;
+
+my $lenparams = @ARGV;
+my $cmd = $ARGV[0];
+if ($lenparams == 0 || $cmd eq "get") {
+  printf $cur;
+} elsif ($cmd eq "inc") {
+  my $s = $cur + 10;
+  system("xbacklight -set $s");
+} elsif ($cmd eq "dec") {
+  my $s = $cur < 11 ? 1 : $cur - 10;
+  system("xbacklight -set $s");
+}
+
