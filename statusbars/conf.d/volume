@@ -1,5 +1,6 @@
 # Run commands
-Exec=($SCRIPTDIR/volume $IMAGEDIR)
+#Exec=($SCRIPTDIR/volume $IMAGEDIR)
+Exec=(python $SCRIPTDIR/volume.py $IMAGEDIR)
 Type=Continuous
 Area=volume
 Screen=0

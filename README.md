@@ -48,6 +48,7 @@ Dependencies
 ------------
 
 * dmenu via the included PKGBUILDs.
+* ttf-dejavu
 * terminus-font
 * python-pyqt5 for pysb
 
@@ -56,13 +57,16 @@ The statusbar scripts use:
       out_to_console yes
       out_to_stderr no
       out_to_x no
-* acpitool
 * acpi
 * netctl
 * wireless\_tools
 * wpa\_supplicant
 * alsa-utils
+* pulseaudio
+* pulseaudio-alsa
 * inotify-tools
+* nmap
+* python-requests
 
 Optional:
 * compton - for compositing, expects a compton.conf in

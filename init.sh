@@ -13,13 +13,17 @@ mkdir "$SESSIONDIR"
 #OLDPATH="$PATH"
 export PATH="$BASEDIR/bin:$BASEDIR/pysb:$PATH"
 
+if hash yarn &> /dev/null; then
+  export PATH="$(yarn global bin):$PATH"
+fi
+
 $BASEDIR/statusbars/status.sh &> $SESSIONDIR/status.log &
 
 #export PATH="$OLDPATH"
 
 # Start compton
-if hash compton &> /dev/null; then
-  compton --config "${XDG_CONFIG_HOME:-"$HOME/.config"}/compton/compton.conf" -b
+if hash comptonconf &> /dev/null; then
+  comptonconf -b
 fi
 
 # allow the socket to open

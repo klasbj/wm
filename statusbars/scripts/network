@@ -5,9 +5,9 @@ wifi_img="$2"
 interface="$3"
 
 NETWORK=$(netctl list | sed -n 's/^\* //p')
-if [[ -z "$NETWORK" ]]; then
-  NETWORK="$(wpa_cli -i "$interface" status | sed -n 's/^id_str=//p')"
-fi
+#if [[ -z "$NETWORK" ]]; then
+#  NETWORK="$(wpa_cli -i "$interface" status | sed -n 's/^id_str=//p')"
+#fi
 DOWNARROW="^i($IMAGEDIR/downarrow.xpm,7)"
 UPARROW="^i($IMAGEDIR/uparrow.xpm,7)"
 
@@ -34,8 +34,8 @@ text net3 \
             ;;
         ethernet)
             echo "text net1 \
-$DOWNARROW\\#\${downspeed $INTERFACE} kB/s|\
-$UPARROW\\#\${upspeed $INTERFACE} kB/s
+$DOWNARROW\\#\${downspeedf $INTERFACE} kB/s|\
+$UPARROW\\#\${upspeedf $INTERFACE} kB/s
 text net2 \
 $NETWORK|\
 \${addrs $INTERFACE}\
@@ -45,6 +45,26 @@ $NETWORK|\
             echo "CONNTYPE: $CONNTYPE|INTERFACE: $INTERFACE"
             ;;
     esac
+else
+    if [[ "$interface" =~ e* ]]; then
+        echo "text net1 \
+$DOWNARROW\\#\${downspeedf $interface} kB/s|\
+$UPARROW\\#\${upspeedf $interface} kB/s
+text net2 \
+\${addrs $interface}\
+"
+    else
+        echo "text net1 \
+$DOWNARROW\\#\${downspeedf $interface} kB/s|\
+$UPARROW\\#\${upspeedf $interface} kB/s
+text net2 \
+\${addrs $interface}\
+text net3 \
+^i($IMAGEDIR/$(exec $wifi_img $interface),10)\\#\
+\${wireless_link_qual_perc $interface}%|\
+\${wireless_essid $interface}\
+"
+    fi
 fi
 
 echo

@@ -1,0 +1,4 @@
+#!/bin/bash
+if hash compton &> /dev/null; then
+  exec compton --config "${XDG_CONFIG_HOME:-"$HOME/.config"}/compton/compton.conf" "$@"
+fi
