@@ -31,5 +31,5 @@ while [ $? -ne 1 -a $? -ge 0 ]
 do
   icon=$IMAGEDIR/$(volimg)
   echo "text volume $VOLUME_CA_START^i($icon,12)$VOLUME_CA_END#"
-  inotifywait -t 30 /dev/snd/controlC1 -qq
+  inotifywait -t 30 /dev/snd/controlC0 -qq
 done

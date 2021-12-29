@@ -18,9 +18,9 @@ $BASEDIR/statusbars/status.sh &> $SESSIONDIR/status.log &
 #export PATH="$OLDPATH"
 
 # Start compton
-if hash compton &> /dev/null; then
-  compton --config "${XDG_CONFIG_HOME:-"$HOME/.config"}/compton/compton.conf" -b
-fi
+#if hash compton &> /dev/null; then
+  #compton --config "${XDG_CONFIG_HOME:-"$HOME/.config"}/compton/compton.conf" -b
+#fi
 
 # allow the socket to open
 sleep 0.3
